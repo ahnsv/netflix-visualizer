@@ -6,6 +6,9 @@ export class ViewData {
     constructor(data: ContentData[]) {
         this.data = data
     }
+    private _toDate(time: number) {
+        return new Date(time)
+    }
     getValue<T, K extends keyof T>(obj: T, key: K) {
         return obj[key];  // Inferred type is T[K]
     }

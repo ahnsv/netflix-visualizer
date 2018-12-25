@@ -42,3 +42,11 @@ export type Option = {
     includes?: SeriesData;
     onlyName: boolean
 }
+
+export type VisualizeOption = {
+    columns?: any[]
+    type?: string
+    event?: (data: any, index: any) => void
+    animation?: any[]
+    bindTo?: string
+}
