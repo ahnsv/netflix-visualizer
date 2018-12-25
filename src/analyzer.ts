@@ -2,21 +2,9 @@ import { ContentData, MovieData, SeriesData, Option } from './model'
 import _ from 'underscore'
 
 export class ViewData {
-    private fs = require('fs');
-    path: string;
     data: ContentData[];
-    constructor(path: string) {
-        this.path = path
-        this.data = []
-    }
-    // TODO: (Bug) does not go thru this because of async function
-    getResource(path: string) {
-        this.fs.readFile(path, (err: any, data: string) => {
-            if (err) {
-                return console.error(err);
-            }
-            this.data = JSON.parse(data)
-        });
+    constructor(data: ContentData[]) {
+        this.data = data
     }
     getValue<T, K extends keyof T>(obj: T, key: K) {
         return obj[key];  // Inferred type is T[K]
@@ -27,32 +15,26 @@ export class ViewData {
     }
 
     filterContentsBy<T>(res: Array<T>, option: Option): Array<T> {
-        return _.where(res, option)
+        return _.first(_.where(res, option.includes as SeriesData), option.num as number)
     }
     sortContentsNameBy<T, K extends keyof T>(res: Array<T>, query: K, option?: Option) {
-        if (option) {
-            res = this.filterContentsBy(res, option)
-        }
-        return _.sortBy(res, query as string).map(data => data[query])
-    }
-
-    sortContentsBy<T, K extends keyof T>(res: Array<T>, query: K, option?: Option) {
-        if (option) {
-            res = this.filterContentsBy(res, option)
-        }
+        // TODO: ApplyFilter here
+        this.applyFilter(res, option as Option)
         return _.sortBy(res, query as string)
     }
-
     searchContents<T, K extends keyof T>(res: Array<T>, query: K, option?: Option) {
-        if (option) {
-            res = this.filterContentsBy(res, option)
-        }
+        // TODO: ApplyFilter here
         return _.where(res, query)
     }
 
+    applyFilter<T, K extends keyof T>(res: Array<T>, option: Option) {
+        if (option) {
+            res = this.filterContentsBy(res, option)
+            if (option.onlyName) {
+                // How to get property of Object with Generics
+                return res.map(data => data["title"])
+            }
+        }
+        return res
+    }
 }
-
-let test = new ViewData('../viewedHistory.json')
-test.getResource(test.path)
-test.getValue(test.data[0], "title")
-test.sortContentsNameBy(test.data, "title")

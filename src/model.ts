@@ -39,5 +39,6 @@ export type SeriesData = Partial<ContentData>
 
 export type Option = {
     num?: number;
-    includes?: SeriesData
+    includes?: SeriesData;
+    onlyName: boolean
 }

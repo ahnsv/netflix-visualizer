@@ -3,41 +3,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var underscore_1 = __importDefault(require("underscore"));
 var fs_1 = __importDefault(require("fs"));
-function getResource(rsc) {
-    fs_1.default.readFile('./viewedHistory.json', 'utf8', function (err, data) {
-        if (err) {
-            console.log(err);
-        }
-        rsc = JSON.parse(data);
-    });
-}
-function checkValidQuery(query) {
-    Object.keys(contents);
-}
-function filterContentsBy(res, option) {
-    // return res.filter((key, value) => {
-    //     // TODO: how to do multi options
-    //     let options = Object.entries(option.includes as SeriesData)
-    //     for (let i in options) {
-    //         if (options[i] !== [key, value]) return false
-    //     }
-    //     return true
-    // })
-    return res.reduce(function (arr, resItem, index) {
-        // TODO: check if resItem has key/value of option
-        if (resItem)
-            ;
-    }, []);
-}
-function sortContentsNameBy(res, query, option) {
-    if (option) {
-        filterContentsBy(res, option);
+var ViewData = /** @class */ (function () {
+    function ViewData(data) {
+        this.data = data;
     }
-    if ()
-        return res.sort(function (a, b) { return (a[query] > b[query]) ? 1 : 0; }).map(function (value) { return value.videoTitle; });
-}
-function sortContentsBy(res, query, option) {
-}
-function searchContent() { }
-function searchContents() { }
+    ViewData.prototype.getValue = function (obj, key) {
+        return obj[key]; // Inferred type is T[K]
+    };
+    ViewData.prototype.checkValidQuery = function (res, key, query) {
+        return res[key] && key == query;
+    };
+    ViewData.prototype.filterContentsBy = function (res, option) {
+        return underscore_1.default.where(res, option);
+    };
+    ViewData.prototype.sortContentsNameBy = function (res, query, option) {
+        if (option) {
+            res = this.filterContentsBy(res, option);
+        }
+        return underscore_1.default.sortBy(res, query).map(function (data) { return data[query]; });
+    };
+    ViewData.prototype.sortContentsBy = function (res, query, option) {
+        if (option) {
+            res = this.filterContentsBy(res, option);
+        }
+        return underscore_1.default.sortBy(res, query);
+    };
+    ViewData.prototype.searchContents = function (res, query, option) {
+        if (option) {
+            res = this.filterContentsBy(res, option);
+        }
+        return underscore_1.default.where(res, query);
+    };
+    return ViewData;
+}());
+exports.ViewData = ViewData;
+var res = [];
+res = JSON.parse(fs_1.default.readFileSync("viewedHistory.json", "utf8"));
+var test = new ViewData(res);
+test.getValue(test.data[0], "title");
+test.sortContentsNameBy(test.data, "title");

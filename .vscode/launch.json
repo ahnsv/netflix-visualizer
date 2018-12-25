@@ -35,6 +35,7 @@
                 "-r",
                 "ts-node/register"
             ],
+            "preLaunchTask": "tsc: build - tsconfig.json",
             "cwd": "${workspaceRoot}",
             "protocol": "inspector",
             "internalConsoleOptions": "openOnSessionStart"
