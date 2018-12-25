@@ -10,11 +10,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
     "@types/node": "^10.12.18",
+    "@types/underscore": "^1.8.9",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   },
   "dependencies": {
     "billboard.js": "^1.7.1",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "underscore": "^1.9.1"
   }
 }

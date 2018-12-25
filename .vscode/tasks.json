@@ -18,6 +18,14 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "test",
+            "args": [
+                "run",
+                "mocha",
+                "${relativeFile}"
+            ]
         }
     ]
 }
