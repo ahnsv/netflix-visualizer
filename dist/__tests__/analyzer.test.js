@@ -10,7 +10,7 @@ describe('analyzer', function () {
     var res = JSON.parse(fs_1.default.readFileSync("viewedHistory.json", "utf8"));
     var test = new analyzer_1.ViewData(res);
     it('Getting resources right', function () {
-        chai_1.expect(test.data).to.have.deep.property('title');
+        chai_1.expect(test.data).to.have.property('title');
     });
     it('Get title value', function () {
         chai_1.expect(test.getValue(test.data[0], "title"));

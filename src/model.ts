@@ -40,7 +40,7 @@ export type SeriesData = Partial<ContentData>
 export type Option = {
     num?: number;
     includes?: SeriesData;
-    onlyName: boolean
+    onlyName?: boolean
 }
 
 export type VisualizeOption = {
