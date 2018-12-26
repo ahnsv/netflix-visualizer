@@ -11,13 +11,13 @@ var ViewDataVisualizer = /** @class */ (function () {
         billboard_js_1.default.generate({
             bindto: options.bindTo,
             data: {
+                colors: {
+                    data1: "green"
+                },
                 columns: options.columns,
                 types: {
                     data1: "area-spline"
                 },
-                colors: {
-                    data1: "green"
-                }
             }
         });
     };

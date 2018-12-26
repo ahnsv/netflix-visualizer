@@ -37,13 +37,13 @@ type Partial<T> = {
 
 export type SeriesData = Partial<ContentData>
 
-export type Option = {
+export interface Option {
     num?: number;
     includes?: SeriesData;
     onlyName?: boolean
 }
 
-export type VisualizeOption = {
+export interface VisualizeOption {
     columns?: any[]
     type?: string
     event?: (data: any, index: any) => void

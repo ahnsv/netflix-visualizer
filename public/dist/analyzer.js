@@ -8,12 +8,6 @@ var ViewData = /** @class */ (function () {
     function ViewData(data) {
         this.data = data;
     }
-    ViewData.prototype._toDate = function (time) {
-        return new Date(time);
-    };
-    ViewData.prototype._isContentDataArray = function (obj) {
-        return typeof obj[0]["title"] === 'string';
-    };
     ViewData.prototype.getValue = function (obj, key) {
         return obj[key]; // Inferred type is T[K]
     };
@@ -23,10 +17,10 @@ var ViewData = /** @class */ (function () {
     };
     ViewData.prototype.isSeriesOrMovie = function (obj) {
         // if returns true, a series
-        return (typeof obj["seriesTitle"] === 'string') ? true : false;
+        return (typeof obj.seriesTitle === 'string') ? true : false;
     };
     ViewData.prototype.checkValidQuery = function (res, key, query) {
-        return res[key] && key == query;
+        return res[key] && key === query;
     };
     ViewData.prototype.rankContentsBy = function (res, query, options) {
         return (query === 'series') ? underscore_1.default.countBy(res, 'seriesTitle') : underscore_1.default.countBy(res, 'videoTitle');
@@ -60,6 +54,12 @@ var ViewData = /** @class */ (function () {
             res = this.filterContentsBy(res, option);
         }
         return res;
+    };
+    ViewData.prototype._toDate = function (time) {
+        return new Date(time);
+    };
+    ViewData.prototype._isContentDataArray = function (obj) {
+        return typeof obj[0].title === 'string';
     };
     return ViewData;
 }());
