@@ -26,6 +26,11 @@
                 "mocha",
                 "${relativeFile}"
             ]
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": []
         }
     ]
 }
