@@ -1,4 +1,4 @@
-import bb from 'billboard.js'
+import { bb } from "billboard.js";
 import { ContentData, VisualizeOption } from './model';
 
 export class ViewDataVisualizer {

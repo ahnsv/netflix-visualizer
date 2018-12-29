@@ -2,11 +2,15 @@
   "name": "netflix-visualizer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "public/dist/index.js",
+  "module": "public/dist/index.es.js",
+  "files": [
+    "public/dist"
+  ],
+  "types": "public/dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node dist/server.js",
-    "watch:node": "nodemon dist/server.js"
+    "build": "rollup -c",
+    "watch": "rollup -cw"
   },
   "keywords": [],
   "author": "Sangtae Ahn",
@@ -20,6 +24,9 @@
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
+    "rollup": "^1.0.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-typescript2": "^0.18.1",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"

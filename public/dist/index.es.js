@@ -1,4 +1,7 @@
 import _ from 'underscore';
+import fs from 'fs';
+import { bb } from 'billboard.js';
+
 var ViewData = /** @class */ (function () {
     function ViewData(data) {
         this.data = data;
@@ -58,4 +61,42 @@ var ViewData = /** @class */ (function () {
     };
     return ViewData;
 }());
-export { ViewData };
+
+var ViewDataVisualizer = /** @class */ (function () {
+    function ViewDataVisualizer() {
+    }
+    ViewDataVisualizer.prototype.generateGraph = function (category, options) {
+        bb.generate({
+            bindto: options.bindTo,
+            data: {
+                colors: {
+                    data1: "green"
+                },
+                columns: options.columns,
+                types: {
+                    data1: "area-spline"
+                },
+            }
+        });
+    };
+    return ViewDataVisualizer;
+}());
+
+var data = JSON.parse(fs.readFileSync(__dirname + "/../viewedHistory.json").toString());
+var viewData = new ViewData(data);
+// TEST 1: sort by estRating top 5
+var result = viewData.sortContentsNameBy(data, "estRating", { num: 5, onlyName: false });
+console.log(viewData.getOnlyTitles(result));
+// TEST 2: count num of series among data
+var numOfSeries = data.filter(function (d) { return viewData.isSeriesOrMovie(d); }).length;
+console.log(numOfSeries + " out of " + data.length);
+// TEST 3: rank user's fav series
+var bestSeries = viewData.bestSeriesBy(data, { num: 5 });
+console.log('bestSeries: %o', bestSeries);
+// TEST 4: visualize best Series by count
+var _a = [bestSeries.map(function (s) { return s[0]; }), bestSeries.map(function (s) { return s[1]; })], dataX = _a[0], dataY = _a[1];
+var vis = new ViewDataVisualizer();
+vis.generateGraph('bar', {
+    bindTo: '#app',
+    columns: [['series-name'].concat(dataX), ['episode-count'].concat(dataY)]
+});

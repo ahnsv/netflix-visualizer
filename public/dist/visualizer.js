@@ -1,14 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var billboard_js_1 = __importDefault(require("billboard.js"));
+import bb from 'billboard.js';
 var ViewDataVisualizer = /** @class */ (function () {
     function ViewDataVisualizer() {
     }
     ViewDataVisualizer.prototype.generateGraph = function (category, options) {
-        billboard_js_1.default.generate({
+        bb.generate({
             bindto: options.bindTo,
             data: {
                 colors: {
@@ -23,4 +18,4 @@ var ViewDataVisualizer = /** @class */ (function () {
     };
     return ViewDataVisualizer;
 }());
-exports.ViewDataVisualizer = ViewDataVisualizer;
+export { ViewDataVisualizer };
