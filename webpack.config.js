@@ -32,5 +32,9 @@ module.exports = {
         fs: 'empty',
         path: true,
         url: false
+    },
+    externals: {
+        bb: "billboard.js",
+        underscore: "underscore"
     }
 }
