@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "public/dist/index.js",
+<<<<<<< HEAD
   "module": "public/dist/index.es.js",
   "files": [
     "public/dist"
@@ -11,6 +12,18 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw"
+=======
+  "module": "public/dist/index.es5.js",
+  "typings": "public/dist/types/index.d.ts",
+  "files": [
+    "public/dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node dist/server.js",
+    "watch:node": "nodemon dist/server.js",
+    "build": "./node_modules/.bin/rollup -c"
+>>>>>>> b41439904108de01217abf294989ee1b1e54ecfb
   },
   "keywords": [],
   "author": "Sangtae Ahn",
@@ -24,8 +37,15 @@
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
+<<<<<<< HEAD
     "rollup": "^1.0.0",
     "rollup-plugin-commonjs": "^9.2.0",
+=======
+    "rollup": "^0.68.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+>>>>>>> b41439904108de01217abf294989ee1b1e54ecfb
     "rollup-plugin-typescript2": "^0.18.1",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",

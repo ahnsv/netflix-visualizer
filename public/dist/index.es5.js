@@ -1,10 +1,6 @@
-'use strict';
-
-function _interopDefault(ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _ = _interopDefault(require('underscore'));
-var fs = _interopDefault(require('fs'));
-var billboard_js = require('billboard.js');
+import _ from 'underscore';
+import fs from 'fs';
+import bb from 'billboard.js';
 
 var ViewData = /** @class */ (function () {
     function ViewData(data) {
@@ -70,7 +66,7 @@ var ViewDataVisualizer = /** @class */ (function () {
     function ViewDataVisualizer() {
     }
     ViewDataVisualizer.prototype.generateGraph = function (category, options) {
-        billboard_js.bb.generate({
+        bb.generate({
             bindto: options.bindTo,
             data: {
                 colors: {
