@@ -1,0 +1,35 @@
+{
+    "name": "Netflix Visualizer",
+    "version": "0.1.0",
+    "description": "Renders Netflix view history as a pretty graph for users",
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.netflix.com/*"
+            ],
+            "run_at": "document_end",
+            "js": [
+                "lib/localstoragedb.min.js",
+                "content.js"
+            ]
+        }
+    ],
+    "externally_connectable": {
+        "matches": [
+            "*://*.netflix.com/*"
+        ]
+    },
+    "permissions": [
+        "*://*.netflix.com/*",
+        "cookies"
+    ],
+    "web_accessible_resources": [
+        "netViz.js",
+        "lib/billboard.min.js",
+        "lib/jquery-3.3.1.min.js",
+        "lib/underscore-min.js",
+        "lib/localstoragedb.min.js"
+    ],
+    "icons": {},
+    "manifest_version": 2
+}
